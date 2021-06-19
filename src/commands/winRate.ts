@@ -1,9 +1,9 @@
 import * as heroStats from "../lib/heroStats";
 
-const winRate = (heroId: number, tierId: number) => {
+const winRate = (heroId: number) => {
   return heroStats.getHeroStats(heroId).then((resolvedData) => {
     if (resolvedData.name === "error") {
-      return -1;
+      return [];
     }
     const { pro_pick, pro_win } = resolvedData;
     // NOTE 키 이름의 맨 앞글자가 숫자라서 일일이 이렇게 했다.
@@ -26,54 +26,53 @@ const winRate = (heroId: number, tierId: number) => {
     const immortalWin = resolvedData["8_win"];
 
     // 전체 승률
-    if (tierId === 0) {
-      const totalPick =
-        pro_pick +
-        heraldPick +
-        guardianPick +
-        crusaderPick +
-        archonPick +
-        legendPick +
-        ancientPick +
-        divinePick +
-        immortalPick;
+    const totalPick =
+      pro_pick +
+      heraldPick +
+      guardianPick +
+      crusaderPick +
+      archonPick +
+      legendPick +
+      ancientPick +
+      divinePick +
+      immortalPick;
 
-      const totalWin =
-        pro_win +
-        heraldWin +
-        guardianWin +
-        crusaderWin +
-        archonWin +
-        legendWin +
-        ancientWin +
-        divineWin +
-        immortalWin;
+    const totalWin =
+      pro_win +
+      heraldWin +
+      guardianWin +
+      crusaderWin +
+      archonWin +
+      legendWin +
+      ancientWin +
+      divineWin +
+      immortalWin;
 
-      return totalWin / totalPick;
-    } else {
-      switch (tierId) {
-        case 1:
-          return heraldWin / heraldPick;
-        case 2:
-          return guardianWin / guardianPick;
-        case 3:
-          return crusaderWin / crusaderPick;
-        case 4:
-          return archonWin / archonPick;
-        case 5:
-          return legendWin / legendPick;
-        case 6:
-          return ancientWin / ancientPick;
-        case 7:
-          return divineWin / divinePick;
-        case 8:
-          return immortalWin / immortalPick;
-        case 9:
-          return pro_win / pro_pick;
-        default:
-          return 0;
-      }
-    }
+    const totalWinRate = totalWin / totalPick;
+    const heraldWinRate = heraldWin / heraldPick;
+    const guardianWinRate = guardianWin / guardianPick;
+    const crusaderWinRate = crusaderWin / crusaderPick;
+    const archonWinRate = archonWin / archonPick;
+    const legendWinRate = legendWin / legendPick;
+    const ancientWinRate = ancientWin / ancientPick;
+    const divineWinRate = divineWin / divinePick;
+    const immortalWinRate = immortalWin / immortalPick;
+    const proWinRate = pro_win / pro_pick;
+
+    // NOTE tier 의 아이디와 이 반환 배열의 인덱스를 서로 매핑함.
+    // (totalWinRate 는 id : 0 으로 간주)
+    return [
+      totalWinRate,
+      heraldWinRate,
+      guardianWinRate,
+      crusaderWinRate,
+      archonWinRate,
+      legendWinRate,
+      ancientWinRate,
+      divineWinRate,
+      immortalWinRate,
+      proWinRate,
+    ];
   });
 };
 

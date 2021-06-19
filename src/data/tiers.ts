@@ -1,3 +1,8 @@
+export type Tier = {
+  id: number;
+  name: string;
+};
+
 const tiers = [
   { id: 1, name: "선구자" },
   { id: 2, name: "수호자" },
