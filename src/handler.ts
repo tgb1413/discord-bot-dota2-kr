@@ -39,7 +39,7 @@ const handler = async (
   let messageTitle = "도슬람_한국";
   let messageDescription = "";
   let messageFields: { name: string; value: string; inline?: boolean }[] = [];
-  let messageImage = "";
+  let messageThumbnail = "";
 
   /**
    * NOTE 명령어
@@ -85,10 +85,10 @@ const handler = async (
           value: (heroWinRate[0] * 100).toFixed(2),
         });
         messageDescription = args[0] + "의 승률입니다.";
-        messageImage = heroObject.image;
+        messageThumbnail = heroObject.image;
 
         embedMessage.addFields(messageFields);
-        embedMessage.setImage(messageImage);
+        embedMessage.setThumbnail(messageThumbnail);
       }
       break;
     default:
