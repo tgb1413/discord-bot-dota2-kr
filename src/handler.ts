@@ -52,18 +52,18 @@ const handler = async (
    */
   switch (command) {
     case "도움말":
-      messageDescription = "🇰🇷 현재 사용 가능한 명령어\n";
+      messageDescription = "🇰🇷 현재 사용 가능한 명령어\n\n";
       messageDescription += "1. /도움말 ===> 도움말 출력\n";
-      messageDescription += "2. /승률 ===> 승률 검색";
+      messageDescription += "2. /승률 ===> 승률 검색\n";
+      messageDescription += "3. /인기템 ===> 아이템 선호도 검색 (업데이트 중)";
       break;
     case "승률":
       if (typeof args[0] === undefined) {
         messageDescription = "'/승률/도움말'을 입력해보세요.";
       } else if (args[0] === "도움말") {
         messageDescription = "🇰🇷 현재 사용 가능한 명령어\n\n";
-        messageDescription += "1. /승률/{영웅} ===> 영웅의 전체 승률 출력\n";
-        messageDescription +=
-          "2. /승률/{영웅}/{티어} ===> 영웅의 티어별 승률 출력";
+        messageDescription += "1. /승률/도움말 ===> 도움말 출력\n";
+        messageDescription += "2. /승률/{영웅} ===> 영웅의 전체 승률 출력";
       } else {
         const heroObject = getHeroObject(args[0]);
         if (heroObject.id === 0) {
@@ -89,6 +89,16 @@ const handler = async (
 
         embedMessage.addFields(messageFields);
         embedMessage.setThumbnail(messageThumbnail);
+      }
+      break;
+    case "인기템":
+      // TODO 여기 하던 중
+      if (typeof args[0] === undefined) {
+      } else if (args[0] === "도움말") {
+        messageDescription = "🇰🇷 현재 사용 가능한 명령어\n\n";
+        messageDescription = "1. /인기템/도움말 ===> 도움말 출력\n";
+        messageDescription = "2. /인기템/{영웅} ===> (업데이트 중)";
+      } else {
       }
       break;
     default:
