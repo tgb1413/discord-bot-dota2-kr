@@ -1772,3 +1772,5 @@ const items: Item[] = [
    * 큰 JSON 파일을 내 입맛에 맞게 잘 수정해주는 그런게 있으면 좋겠네.
    */
 ];
+
+export default items;
