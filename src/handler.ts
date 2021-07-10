@@ -62,7 +62,7 @@ const handler = async (
       messageDescription = "🇰🇷 현재 사용 가능한 명령어\n\n";
       messageDescription += "1. /도움말 ===> 도움말 출력\n";
       messageDescription += "2. /승률 ===> 승률 검색\n";
-      messageDescription += "3. /인기템 ===> 아이템 선호도 검색 (업데이트 중)";
+      messageDescription += "3. /인기템 ===> 아이템 선호도 검색";
       break;
     case "승률":
       if (typeof args[0] === undefined) {
